@@ -40,6 +40,72 @@ a.addChild(a);      // [c, a]
 
 An Element may have zero to many children, whicn are simply other Elements, themselves having children. This forms a sort of directed graph, visualized by the tree component in the web editor.
 
+## Schema
+
+> Use get and set methods to retrieve properties for primitive types.
+
+```javascript
+// strings
+element.schema.setString('foo', 'This is a foo.');
+element.schema.getString('foo');                    // This is a foo.
+
+// numbers
+element.schema.setNumber('bar', 12);
+element.schema.getNumber('bar');                    // 12
+
+// bools
+element.schema.setBool('fizz', true);
+element.schema.getBool('fizz');                     // true
+```
+
+> Properties may also be watched for changes.
+
+```javascript
+element.setNumber('foo', -1);
+element.watchNumber('foo', function (prev, next) {
+    log.info(
+        'Value changed from {0} -> {1}.",
+        prev,
+        next);
+});
+
+element.setNumber('foo', 5);  // Value changed from -7 -> 5.
+```
+
+> If an element doesn't already have a value, it returns a value up the graph. In this circumstance, the property of b is _bound_ to the property of a.
+
+```javascript
+a.addChild(b);
+
+a.setNumber('foo', 12);
+b.getNumber('foo');         // 12
+
+a.setNumber('foo', 17);
+b.getNumber('foo');         // 17
+```
+
+> Watchers are also called for bound properties.
+
+```javascript
+
+b.watchNumber('foo', function(prev, next) {
+    log.info('Changed!');
+});
+a.setNumber('foo', 12);     // Changed!
+
+```
+
+> Once the child changes its value, the binding is broken.
+
+```javascript
+b.setNumber('foo', -7);
+
+a.getNumber('foo');         // 17
+b.getNumber('foo');         // -7
+```
+
+Elements are designed to have a flexible method of managing, composing, and synchronizing state. To that end, each element has a `schema` object that stores all of the Element's state. Schema are a grab bag of values, each of which may be watched for changes. Additionally, Schema are composable up the graph-- that is, if an element's schema does not contain a specific value, it will look up the graph until the value is found. This is best seen by example.
+
 ## Queries
 
 > Element::findOne() retrieves a child with matching id.
