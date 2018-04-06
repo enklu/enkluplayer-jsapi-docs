@@ -8,6 +8,10 @@ toc_footers:
   - <a href='https://enklu.com'>Sign Up for Enklu!</a>
 
 includes:
+  - behaviors
+  - logging
+  - math
+  - time
   - elements
 
 search: true

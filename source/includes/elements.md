@@ -157,3 +157,21 @@ var allBig = a.find('b..q.(@size==10)');
 ```
 
 It can become taxing to iterate the element graph to find the elements you need, particularly as it grows dynamically. For this reason, elements have a builtin query language that can be used to filter and find collections of elements that you need.
+
+## Transform
+
+```javascript
+// these two are equivalent
+element.schema.setVec('position', vec3(1, 1, 1));
+element.transform.position = vec3(1, 1, 1);
+
+// these two are equivalent
+element.schema.setVec('scale', vec3(1, 1, 1));
+element.transform.scale = vec3(1, 1, 1);
+
+// these two are equivalent
+element.schema.setQuat('rotation', q.euler(0, 0, 0));
+element.transform.rotation = q.euler(0, 0, 0);
+```
+
+Several shortcuts are provided, not least of which is the `transform` object. While `localPosition`, `localRotation`, and `localScale` may all be set via the Schema system, the `transform` object also provides these as raw fields.
