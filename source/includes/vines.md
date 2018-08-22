@@ -1,13 +1,11 @@
 # VineML
 
-## Overview
+`VineML` is a powerful markup language designed to be very familiar to anyone that has used HTML. It is useful for creating any type of element hierarchy in a scene and assign values to those elements. A combination of `VineML` and `Behavior` scripts can be used to create rich applications in Enklu.
 
-`VineML` is a powerful markup language designed to be very familiar to anyone that has used HTML. It can be used to create any type of element in a scene and assign values to elements. A combination of `VineML` and `Behavior` scripts can be used to create rich applications in Enklu.
-
-## QuickStart
+## Language QuickStart
 
 ```html
-/* A vine header is optional. This can be useful to target a specific version of the VineML parser. */
+/* A vine header is optional.*/
 <?Vine>
 
 /* Documents can have only a single root element. */
@@ -49,7 +47,7 @@
 <Caption label='Hello World' />
 ```
 
-Tags follow XHTML conventions, i.e. every tag must be closed. In HTML, we can write `<br>`, but `VineML` this is invalid. Every tag must have a closing tag or it must be a self closing tag.
+Tags follow XHTML conventions, i.e. every tag must be closed. In HTML, we can write `<br>`, but in `VineML` this is invalid. Every tag must have a closing tag or it must be a self closing tag.
 
 In addition, tags may not have raw text inside of them. All values are passed to tags through attributes.
 
@@ -66,3 +64,24 @@ In addition, tags may not have raw text inside of them. All values are passed to
 ```
 
 While tags define the object structure, attributes define the object properties. `VineML` has support for string, boolean, number, and vector literals. Any property of an element may be passed through element attributes.
+
+## Preprocessor
+
+> The value returned from the JS block is inserted into the `VineML` document.
+
+```html
+<?Vine>
+
+<Menu>
+	{{
+		var elements = [];
+		for (var i = 0; i < 100; i++) {
+			elements.push("<Button label='" + i + "' />");
+		}
+
+		return elements.join('');
+	}}
+</Menu>
+```
+
+Sometimes it's useful to insert logic into a `VineML` document. In these cases, scripts can be embedded in a `VineML` document that will be executed by a JavaScript preprocessor before being handed off to the `VineML` parser.

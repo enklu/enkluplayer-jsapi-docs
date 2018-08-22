@@ -1,10 +1,8 @@
 # Behaviors
 
-## Overview
-
 The entry point into scripting with Enklu is the `Behavior` script. Many `Behavior` scripts may be attached to elements throughout the hierarchy. They can manipulate the object graph, work with central systems, or send messages to scripts on other elements.
 
-## Lifecycle
+## Lifecycle Functions
 
 > A simple script.
 
@@ -12,7 +10,7 @@ The entry point into scripting with Enklu is the `Behavior` script. Many `Behavi
 log.debug('Hello World!');
 ```
 
-> If an `enter` function is defined, it will be called once after all scripts have been executed initially. This is a safe place to manipulate elements created through vines, as the elements are guaranteed to be created at this point.
+> If an `enter` function is defined, it will be called once and only once after all scripts have been initially executed. This is a safe place to manipulate elements created through vines, as the elements are guaranteed to be created by this point.
 
 ```javascript
 var okBtn;
@@ -27,7 +25,7 @@ function onOkActivated() {
 }
 ```
 
-> An `update` function may also be defined, which will be called every frame after `enter` is called. An `enter` function does not need to be specified for an `update` function to be called.
+> An `update` function may also be defined, which will be called every frame. This function is guaranteed to be called after `enter` is called, though an `enter` function is not required for `update` to be called.
 
 ```javascript
 var acc = 0;
