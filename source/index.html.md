@@ -8,11 +8,14 @@ toc_footers:
   - <a href='https://enklu.com'>Sign Up for Enklu!</a>
 
 includes:
+  - vines
   - behaviors
+  - preprocessor
   - logging
   - math
   - time
   - elements
+  - app
 
 search: true
 ---

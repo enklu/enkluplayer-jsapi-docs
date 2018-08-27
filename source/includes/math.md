@@ -1,7 +1,5 @@
 # Math
 
-## Overview
-
 The Math API extends the builtin [JS Math API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math), which is already fully supported. Enklu includes objects for working in three dimensions.
 
 ## Vec3

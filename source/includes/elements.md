@@ -1,10 +1,8 @@
 # Elements
 
-## Overview
-
 The Elements API is powerful abstraction that allows users to manipulate any property on any Element through a handful of simple methods. This is important because these few methods allow for easy networking or persistent state.
 
-## Element Hierarchy
+## Hierarchy
 
 > An element's children are accessible via the readonly children field.
 
@@ -39,6 +37,13 @@ a.addChild(a);      // [c, a]
 ```
 
 An Element may have zero to many children, whicn are simply other Elements, themselves having children. This forms a sort of directed graph, visualized by the tree component in the web editor.
+
+## Destroy
+
+```javascript
+// destroys element and all children
+element.destroy();
+```
 
 ## Schema
 
@@ -175,3 +180,35 @@ element.transform.rotation = q.euler(0, 0, 0);
 ```
 
 Several shortcuts are provided, not least of which is the `transform` object. While `localPosition`, `localRotation`, and `localScale` may all be set via the Schema system, the `transform` object also provides these as raw fields.
+
+## Events
+
+```javascript
+a.on('activated', function(evt) {
+	// 
+});
+
+a.off('activated', onActivated);
+```
+
+Many elements dispatch events. These events can be listened for using `on` and `off` functions, which attach a callback to a specific event. It is good practice to attach events on `enter` and remove them in `exit`.
+
+## Message Passing
+
+```javascript
+var menu = this.find('..menu-new');
+
+// sends 'open' message to all attached scripts
+menu.send('open');	// open()
+menu.send('register', 'foo', 'bar', 5); // register('foo', 'bar', 5);
+```
+
+> If a `Behavior` script cannot handle a message the message is discarded. However, a special function may be defined which receives all discarded events.
+
+```javascript
+function msgMissing(type, args) {
+	log.info(type + ' was called but I could not handle it.');
+}
+```
+
+Messages may be passed to elements. The message consists of a function name and any number of parameters. The receiving element then calls the function by name on all attached scripts with the passed in parameters.
