@@ -64,24 +64,3 @@ In addition, tags may not have raw text inside of them. All values are passed to
 ```
 
 While tags define the object structure, attributes define the object properties. `VineML` has support for string, boolean, number, and vector literals. Any property of an element may be passed through element attributes.
-
-## Preprocessor
-
-> The value returned from the JS block is inserted into the `VineML` document.
-
-```html
-<?Vine>
-
-<Menu>
-	{{
-		var elements = [];
-		for (var i = 0; i < 100; i++) {
-			elements.push("<Button label='" + i + "' />");
-		}
-
-		return elements.join('');
-	}}
-</Menu>
-```
-
-Sometimes it's useful to insert logic into a `VineML` document. In these cases, scripts can be embedded in a `VineML` document that will be executed by a JavaScript preprocessor before being handed off to the `VineML` parser.

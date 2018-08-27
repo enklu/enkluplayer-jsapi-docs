@@ -10,6 +10,7 @@ toc_footers:
 includes:
   - vines
   - behaviors
+  - preprocessor
   - logging
   - math
   - time
