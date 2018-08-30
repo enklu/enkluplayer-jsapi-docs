@@ -1,6 +1,6 @@
 # VineML
 
-`VineML` is a powerful markup language designed to be very familiar to anyone that has used HTML. It is useful for creating any type of element hierarchy in a scene and assign values to those elements. A combination of `VineML` and `Behavior` scripts can be used to create rich applications in Enklu.
+`VineML` is a powerful markup language designed to be very familiar to anyone that has used HTML. It is useful for creating any type of element hierarchy in a scene and assigning values to those elements. A combination of `VineML` and `Behavior` scripts can be used to create rich applications in Enklu.
 
 ## Language QuickStart
 

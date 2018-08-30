@@ -1,6 +1,6 @@
 # Elements
 
-The Elements API is powerful abstraction that allows users to manipulate any property on any Element through a handful of simple methods. This is important because these few methods allow for easy networking or persistent state.
+The Elements API is a powerful abstraction that allows users to manipulate any property on any Element through a handful of simple methods. This is important because these few methods allow for easy networking or persistent state.
 
 ## Hierarchy
 
