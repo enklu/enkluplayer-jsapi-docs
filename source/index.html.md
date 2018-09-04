@@ -16,6 +16,7 @@ includes:
   - time
   - elements
   - app
+  - proximity
 
 search: true
 ---

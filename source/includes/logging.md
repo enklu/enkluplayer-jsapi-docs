@@ -21,6 +21,6 @@ log.error('Something bad happened!');
 log.debug('This is a {0} log.', 'debug');
 ```
 
-The logging API is useful for debugging, and is only active for app collaboratos in edit mode. Once an app is deployed or viewed in play mode, logging will no longer.
+The logging API is useful for debugging, and is only active for app collaborators in edit mode. Once an app is deployed or viewed in play mode, logging will no longer.
 
 All logs are output to the browser console when working from the web editor. Logging support on other platforms is coming soon.
