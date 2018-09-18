@@ -17,6 +17,9 @@ includes:
   - elements
   - app
   - proximity
+  - timers
+  - messages
+  - gestures
 
 search: true
 ---

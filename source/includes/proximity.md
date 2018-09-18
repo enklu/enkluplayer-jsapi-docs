@@ -30,7 +30,7 @@ function onTriggerExit(){
 
 function exit(){
 	proximity.unsubscribe(this, 'enter', onTriggerEnter);
-	proximity.unsubscribe(this, 'exit', onTriggerExit);	
+	proximity.unsubscribe(this, 'exit', onTriggerExit);
 }
 ```
 
@@ -44,7 +44,8 @@ this.schema.setNumber('proximity.innerRadius', 0.25);
 this.schema.setNumber('proximity.outerRadius', 2);
 ```
 
-All schema configuration is done under the `proximity` namespace:
+All schema configuration is done under the `proximity` namespace.
+
 - `proximity.trigger` - Marks an Element as a Trigger.
 - `proximity.innerRadius` - The distance where a subscribed Element or Trigger will dispatch `enter` events.
 - `proximity.outerRadius` - The distance a Trigger or subscribed Element has to be to dispatch `exit` events.

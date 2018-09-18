@@ -26,7 +26,7 @@ v.forward;  // { x:0, y:0, z:1 }
 var a = vec3.up;                // { x:0, y:1, z:0 }
 
 // scalar multiplication
-v.mult(5, a);                   // { x:0, y:5, z:0 }
+v.scale(a, 5);                   // { x:0, y:5, z:0 }
 
 // vector addition
 v.add(a, vec3(1, 0, 0));        // { x:1, y:1, z:0 }
@@ -43,9 +43,20 @@ v.len(a);                       // 1
 // normalize
 v.normalize(vec3(10, 0, 0));    // { x:1, y:0, z:0 }
 
+// distance
+v.distance(a, vec3(1, 0, 0));   // 1.4142
+
+// horizontal distance
+v.distanceXZ(a, vec3(1, 5, 0));   // 1.4142
+
+// The length & distance functions come with squared versions for performance optimizations
+v.lenSqr(vec3(0, 2, 0));            // 4
+v.distanceSqr(a, vec3(1, 0, 0))     // 2
+v.distanceXZSqr(a, vec3(1, 5, 0))   // 2
+
 ```
 
-The `vec3` is useful for working with `Element` translation and scale, or any other 3D vector math.
+The `vec3` object is useful for working with `Element` translation and scale, or any other 3D vector math.
 
 ## Quat
 
@@ -61,6 +72,7 @@ var rot = quat(1, 0, 0, 1);
 q.identity;         // identity rotation
 
 q.eul(90, 0, 0);    // creates a quat from Euler rotations
+q.euler(90, 0, 0);  // identical to q.eul
 ```
 
 The `quat` is provided for three dimensional rotation.
