@@ -1,12 +1,12 @@
 # Time
 
-> To get the milliseconds since application launch, use now().
+> To get the seconds since application launch, use now().
 
 ``` javascript
 var now = time.now();
 ```
 
-> Additionally, you may retrieve the milliseconds since last frame.
+> Additionally, you may retrieve the seconds since last frame.
 
 ```javascript
 var dt = time.dt();
