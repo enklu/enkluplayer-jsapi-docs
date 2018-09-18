@@ -36,7 +36,14 @@ a.addChild(c);      // [a, c]
 a.addChild(a);      // [c, a]
 ```
 
-An Element may have zero to many children, whicn are simply other Elements, themselves having children. This forms a sort of directed graph, visualized by the tree component in the web editor.
+> Relationships can be tested explicitly or with helpers.
+
+```javascript
+b.parent === a;   // True
+b.isChildOf(a);   // True
+```
+
+An Element may have zero to many children, which are simply other Elements, themselves having children. This forms a sort of directed graph, visualized by the tree component in the web editor.
 
 ## Destroy
 
@@ -69,12 +76,44 @@ element.schema.getBool('fizz');                     // true
 element.setNumber('foo', -1);
 element.watchNumber('foo', function (prev, next) {
     log.info(
-        'Value changed from {0} -> {1}.",
+        'Value changed from {0} -> {1}.',
         prev,
         next);
 });
 
-element.setNumber('foo', 5);  // Value changed from -7 -> 5.
+element.setNumber('foo', 5);  // Value changed from -1 -> 5.
+```
+
+> Watched properties can be unwatched.
+
+```javascript
+function onChange(prev, next){
+  log.info('Value changes from {0} -> {1}.',
+    prev,
+    next);
+}
+
+element.setNumber('foo', -1);
+element.watchNumber('foo', onChange);
+element.setNumber('foo', 2);            // Value changes from -1 -> 2
+
+element.unwatchNumber('foo', onChange);
+element.setNumber('foo', 2);            // <no output>
+```
+
+> Properties can be watched explicitly for one change
+
+```javascript
+element.setNumber('foo', -1);
+element.watchNumber('foo', function (prev, next) {
+    log.info(
+        'Value changed from {0} -> {1}.',
+        prev,
+        next);
+});
+
+element.setNumber('foo', 5);  // Value changed from -1 -> 5.
+element.setNumber('foo', 8);  // <no output>
 ```
 
 > If an element doesn't already have a value, it returns a value up the graph. In this circumstance, the property of b is _bound_ to the property of a.
@@ -107,6 +146,18 @@ b.setNumber('foo', -7);
 
 a.getNumber('foo');         // 17
 b.getNumber('foo');         // -7
+```
+
+> Values can be taken from an Element with explicitly avoiding searching up the graph. A default value for the data type will be set & returned if unprovided.
+```javascript
+b.getOwnNumber('foo');        // 0
+b.getOwnNumber('foo', 12);    // 12
+
+b.getOwnString('bar');        // <empty string>
+b.getOwnString('bar', 'flip'  // flip
+
+b.getOwnBool('fizz');         // false
+b.getOwnBool('fizz', true);   // true
 ```
 
 Elements are designed to have a flexible method of managing, composing, and synchronizing state. To that end, each element has a `schema` object that stores all of the Element's state. Schema are a grab bag of values, each of which may be watched for changes. Additionally, Schema are composable up the graph-- that is, if an element's schema does not contain a specific value, it will look up the graph until the value is found. This is best seen by example.
@@ -185,7 +236,7 @@ Several shortcuts are provided, not least of which is the `transform` object. Wh
 
 ```javascript
 a.on('activated', function(evt) {
-	// 
+	//
 });
 
 a.off('activated', onActivated);
@@ -212,3 +263,23 @@ function msgMissing(type, args) {
 ```
 
 Messages may be passed to elements. The message consists of a function name and any number of parameters. The receiving element then calls the function by name on all attached scripts with the passed in parameters.
+
+## Misc
+
+```javascript
+a.id;             // Readonly - Gets the Element's ID
+
+a.type;           // Readonly = Gets the Element's type
+
+a.visible = true; // Gets or sets this Element's visibility
+
+// Since schema values report local transform data, this helper
+//  can be used to quickly get an offset between two Elements.
+// Hololens: Elements under different anchors cannot compare
+//  their distances normally, so this function is a must.
+//  Use this function to determine the offset of an Element
+//  relative to another across anchors.
+var offsetVec3 = a.positionRelativeTo(c);
+```
+
+The Element API has a few other miscellaneous usages for scripting.
