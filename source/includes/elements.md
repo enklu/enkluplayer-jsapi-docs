@@ -36,6 +36,13 @@ a.addChild(c);      // [a, c]
 a.addChild(a);      // [c, a]
 ```
 
+> Relationships can be tested explicitly or with helpers.
+
+```javascript
+b.parent === a;   // True
+b.isChildOf(a);   // True
+```
+
 An Element may have zero to many children, which are simply other Elements, themselves having children. This forms a sort of directed graph, visualized by the tree component in the web editor.
 
 ## Destroy
