@@ -273,9 +273,12 @@ a.type;           // Readonly = Gets the Element's type
 
 a.visible = true; // Gets or sets this Element's visibility
 
-// Hololens - Elements under different anchors cannot compare
-//  their distances normally. Use this function to determine
-//  the offset of an Element relative to another across anchors.
+// Since schema values report local transform data, this helper
+//  can be used to quickly get an offset between two Elements.
+// Hololens: Elements under different anchors cannot compare
+//  their distances normally, so this function is a must.
+//  Use this function to determine the offset of an Element
+//  relative to another across anchors.
 var offsetVec3 = a.positionRelativeTo(c);
 ```
 
