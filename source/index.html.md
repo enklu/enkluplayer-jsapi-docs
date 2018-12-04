@@ -20,6 +20,7 @@ includes:
   - timers
   - messages
   - gestures
+  - tween
 
 search: true
 ---
