@@ -22,6 +22,7 @@ includes:
   - messages
   - gestures
   - tween
+  - edit
 
 search: true
 ---
