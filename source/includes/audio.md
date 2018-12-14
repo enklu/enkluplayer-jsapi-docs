@@ -1,7 +1,5 @@
 # Audio
 
-The Audio API is available on any Element whose Asset contains an audio clip. It's recommended to use a null check to ensure all instances of your script have their dependencies.
-
 ```javascript
 if (!this.audio) {
 	log.error('Asset missing audio support!');
@@ -9,17 +7,9 @@ if (!this.audio) {
 }
 ```
 
-## Modifying Properties
+The Audio API is available on any Element whose Asset contains an audio clip. It's recommended to use a null check to ensure all instances of your script have their dependencies.
 
-Each of the following properties can be retrieved and set:
-- volume
-- loop
-- mute
-- playOnAwake
-- spatialBlend
-- minDistance
-- maxDistance
-- dopplerLevel
+## Modifying Properties
 
 ```javascript
 // Invert looping
@@ -32,9 +22,18 @@ this.audio.mute = true;
 this.audio.volume = 0.5;
 ```
 
-## Tween Integration
+Each of the following properties can be retrieved and set:
 
-Tweening can be used to modify volume over time.
+- volume
+- loop
+- mute
+- playOnAwake
+- spatialBlend
+- minDistance
+- maxDistance
+- dopplerLevel
+
+## Tween Integration
 
 ```javascript
 const tween = require('tween');
@@ -45,3 +44,5 @@ var twnVolume = tween.number(this, 'audio.volume')
 	.duration(10);
 twnVolume.start();
 ```
+
+Tweening can be used to modify volume over time.

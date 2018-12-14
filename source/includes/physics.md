@@ -1,14 +1,12 @@
 # Physics
 
-The Physics API provides access to simple raycasting. In time, they'll be more functionality available.
-
 ```javascript
 const physics = require('physics');
 ```
 
-## Raycasting
+The Physics API provides access to simple raycasting. In time, they'll be more functionality available.
 
-A raycast can be used to see if a ray intersects with a specific Element.
+## Raycasting
 
 ```javascript
 var element = this.findOne('..(@name=Cube)');
@@ -21,3 +19,5 @@ if (hit) {
 	log.info('Miss :(');
 }
 ```
+
+A raycast can be used to see if a ray intersects with a specific Element.

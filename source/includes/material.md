@@ -1,7 +1,5 @@
 # Material
 
-The Material API is available on Elements and is used to modify material variables. Material variables are passed into shaders, to allow for dynamic effects/visuals. It's a good idea to null check first to ensure the target Element has support.
-
 ```javascript
 if (!this.material) {
 	log.error('Asset missing material support!');
@@ -9,9 +7,9 @@ if (!this.material) {
 }
 ```
 
-## Modifying Parameters
+The Material API is available on Elements and is used to modify material variables. Material variables are passed into shaders, to allow for dynamic effects/visuals. It's a good idea to null check first to ensure the target Element has support.
 
-Supported parameter types are: Float/Integer/Vec3/Col. All parameter types can be both retrieved and set.
+## Modifying Parameters
 
 ```javascript
 // Float
@@ -40,9 +38,9 @@ function cycleColor() {
 
 ```
 
-## Tween Integration
+Supported parameter types are: Float/Integer/Vec3/Col. All parameter types can be both retrieved and set.
 
-Material parameters can be tweened via the Tweening API. Currnetly, parameters have to be set before used for the internal integration to link them.
+## Tween Integration
 
 ```javascript
 const Tween = requie('tween')
@@ -55,3 +53,5 @@ function fadeIn() {
 	twnAlpha.start();
 }
 ```
+
+Material parameters can be tweened via the Tweening API. Currnetly, parameters have to be set before used for the internal integration to link them.

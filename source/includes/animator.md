@@ -1,7 +1,5 @@
 # Animator
 
-The Animator API is available on any Element that contains an Asset supporting animations. Since scripts can be added to multiple Elements, it's a good idea to null check to ensure your script has its dependencies.
-
 ```javascript
 if (!this.animator) {
 	log.error('Asset missing animator support!');
@@ -9,9 +7,9 @@ if (!this.animator) {
 }
 ```
 
-## Querying Available Parameters
+The Animator API is available on any Element that contains an Asset supporting animations. Since scripts can be added to multiple Elements, it's a good idea to null check to ensure your script has its dependencies.
 
-Parameter names can be queried via the API. Names are required for driving animation changes and are case sensitive. Viewing the available parameters can be useful in debugging.
+## Querying Available Parameters
 
 ```javascript
 var names = this.animator.parameterNames;
@@ -20,9 +18,9 @@ for (var i in names) {
 }
 ```
 
-## Modifying Parameters
+Parameter names can be queried via the API. Names are required for driving animation changes and are case sensitive. Viewing the available parameters can be useful in debugging.
 
-Each parameter is either a Boolean/Trigger, Integer, or Float. The API provides access for querying existing parameter values as well as setting new values.
+## Modifying Parameters
 
 ```javascript
 // Booleans & Triggers
@@ -44,9 +42,9 @@ function changeSpeed() {
 }
 ```
 
-### Querying Clips
+Each parameter is either a Boolean/Trigger, Integer, or Float. The API provides access for querying existing parameter values as well as setting new values.
 
-The current playing clip name can be queried, as well as whether specific clips are playing. This can be useful to determine if a specific clip has finished playing.
+## Querying Clips
 
 ```javascript
 var layer = 0;
@@ -55,9 +53,9 @@ log.info('Current playing: ' + this.animator.getCurrentClipName(layer));
 log.info('Is running: ' + this.animator.isClipPlaying('Run', layer));
 ```
 
-### Tween Integration
+The current playing clip name can be queried, as well as whether specific clips are playing. This can be useful to determine if a specific clip has finished playing.
 
-Animator parameters can be tweened via the Tweening API. Currently, parameters have to be set first for the internal integration to link.
+## Tween Integration
 
 ```javascript
 const tween = require('tween');
@@ -71,3 +69,5 @@ function enter() {
 	twnSpeed.start();
 }
 ```
+
+Animator parameters can be tweened via the Tweening API. Currently, parameters have to be set first for the internal integration to link.
