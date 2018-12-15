@@ -23,6 +23,7 @@ includes:
   - gestures
   - tween
   - edit
+  - touch
 
 search: true
 ---
