@@ -21,9 +21,13 @@ includes:
   - timers
   - messages
   - gestures
+  - physics
   - tween
-  - edit
   - touch
+  - animator
+  - material
+  - audio
+  - edit
 
 search: true
 ---
