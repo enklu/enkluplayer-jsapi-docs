@@ -28,6 +28,7 @@ includes:
   - material
   - audio
   - edit
+  - drawing
 
 search: true
 ---
