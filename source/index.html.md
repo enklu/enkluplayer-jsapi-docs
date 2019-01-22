@@ -29,6 +29,7 @@ includes:
   - audio
   - edit
   - drawing
+  - checksum
 
 search: true
 ---
