@@ -19,15 +19,28 @@ A handful of methods are exposed for managing the system.
 
 ## Device
 
+> The currently running version of Enklu. This value will vary between platforms, but is always in a semver form.
+
 ```javascript
-// The running version of Enklu.
-system.device.enkluVersion
+var v = system.device.enkluVersion;
+```
 
-// The version of UWP. This function returns an empty string on non-UWP platforms.
-system.device.uwpVersion
+> The version string of UWP. This function returns an empty string on non-UWP platforms.
 
-// The battery percentage, between 0 and 1.
-system.device.battery
+```javascript
+var v = system.device.uwpVersion;
+```
+
+> The battery percentage given as a value between 0 and 1.
+
+```javascript
+var batt = system.device.battery;
+```
+
+> A unique id for this hardware. This value is constant between sessions and even application updates. A new install will change the value.
+
+```javascript
+var id = system.device.hardwareId;
 ```
 
 Device specific information is available through the `device` property.
