@@ -17,11 +17,18 @@ buildscript {
     }
 }
 
+task install(type:Exec) {
+    commandLine 'cmd', '/c', "$bundlerPath install"
+    standardOutput System.out
+    errorOutput System.out
+}
+
 task build(type:Exec) {
     commandLine 'cmd', '/c', "$bundlerPath exec middleman build --clean"
     standardOutput System.out
     errorOutput System.out
 }
+build.dependsOn = [install]
 
 task upload(type:Exec) {
     commandLine 'cmd', '/c', "$awsPath s3 cp build/ s3://${docBucket}/jsapi-v${apiVersion} --recursive"
