@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+
+        maven {
+            url "${nexusUrl}/maven-releases/"
+            credentials {
+                username = nexusUsername
+                password = nexusPassword
+            }
+        }
+    }
+}
+
+task build(type:Exec) {
+    commandLine 'cmd', '/c', "$bundlerPath exec middleman build --clean"
+    standardOutput System.out
+    errorOutput System.out
+}
+
+task upload(type:Exec) {
+    commandLine 'cmd', '/c', "$awsPath s3 cp build/ s3://${docBucket}/jsapi-v${apiVersion} --recursive"
+    standardOutput System.out
+    errorOutput System.out
+}
