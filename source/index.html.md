@@ -30,6 +30,7 @@ includes:
   - edit
   - drawing
   - checksum
+  - voice
 
 search: true
 ---

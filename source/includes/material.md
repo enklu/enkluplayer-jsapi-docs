@@ -9,6 +9,13 @@ if (!this.material) {
 
 The Material API is available on Elements and is used to modify material variables. Material variables are passed into shaders, to allow for dynamic effects/visuals. It's a good idea to null check first to ensure the target Element has support.
 
+```javascript
+this.material.makeUnique();
+```
+
+If you have multiple instances of the same asset in an Experience but want to control only the material of one instance, you can individually make materials unique. 
+Note, this will incur some performance overhead but in most cases is negligible.
+
 ## Modifying Parameters
 
 ```javascript
