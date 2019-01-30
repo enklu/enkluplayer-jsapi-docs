@@ -45,6 +45,62 @@ var id = system.device.hardwareId;
 
 Device specific information is available through the `device` property.
 
+### Video Capture
+```javascript
+// Whether the device is currently recording.
+log.info('Recording: ' + system.device.video.isRecording);
+
+// Gets the device ready to record videos.
+system.device.video.setup(function(success) {
+  log.info('Video ready: ' + success);
+});
+
+// Starts recording a video.
+system.device.video.start(function(success) {
+  log.info('Recording started: ' + success);
+});
+
+// Starts recording a video to a custom path.
+system.device.video.startCustomPath(function(success) {
+  log.info('Recording started:' + success);
+});
+
+// Stops recording a video.
+system.device.video.stop(function(path) {
+  log.info('Video saved to: ' + path);
+});
+
+// Cleans up video capture on the device.
+system.device.video.teardown();
+```
+
+Video Capture is available on devices that support it. Due to the asynchronous nature of underlying libraries, all scripting logic that depends on video capture status should occur in the callbacks provided. 
+If you use video capture in your experience, it's best to call `system.device.video.teardown();` in an `exit()` function. 
+
+### Image Capture
+```javascript
+// Optional - Potentially reduces `capture()` call time on certain devices.
+system.device.image.warm(function(success) {
+  log.info(success);
+});
+
+// Captures an image.
+system.device.image.capture(function(path) {
+  log.info('Image taken: ' + path);
+});
+
+// Captures an image with a specific path.
+system.device.image.captureCustomPath(function(path) {
+  log.info('Image taken: ' + path)
+}, 'myImage');
+
+system.device.image.abort(function(success) {
+  log.info('Image capture aborted: ' + success);
+});
+```
+
+Image capture is available on devices that support it. Note: This API is likely to change in the future to be more aligned with the video capture API.
+
 ## Experiences
 
 ```javascript
