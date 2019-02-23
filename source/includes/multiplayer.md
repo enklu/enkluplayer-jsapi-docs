@@ -3,7 +3,7 @@
 > The multiplayer system may be accessed via the `mp` require.
 
 ```javascript
-var mp = require('mp);
+var mp = require('mp');
 ```
 
 > To control synchronization between clients, first obtain a context for the element in question. All synchronization for a specific element is directed through this context object.
@@ -17,6 +17,12 @@ Enklu comes with a specialized interface for realtime multiplayer. Currently, th
 At a high level, the multiplayer system can synchronize elements and their schema properties across clients. This means that when a client changes the position of an element, for instance, the change will be propagated to all clients so that the position prop stays in sync.
 
 ## Auto-Toggle
+
+> Definition.
+
+```javascript
+autoToggle([prop name], [initial boolean value], [milliseconds]);
+```
 
 > Here is a complete, annotated code example.
 
@@ -49,6 +55,6 @@ function onTouched() {
 }
 ```
 
-The most basic networking primitive provided is the auto-toggle. This construct sets a boolean prop to a specific value, and when a provided time elapses, resets the prop. The prop changes are propagated to all clients currently in the experience.
+The most basic networking primitive provided is the auto-toggle. This construct sets a boolean prop to a specific value, and when a provided number of milliseconds elapses, resets the prop. The prop changes are propagated to all clients currently in the experience.
 
 This construct is connection transparent-- meaning that a connection to the multiplayer server is not required. The prop will be set to a value and flipped back regardless of whether or not the client is connected. If the client is connected, the prop change will propagate to all other clients. A key point here is that the client is not responsible for setting the prop back to the original value when the time has elapsed: the multiplayer server will do this. This is important because if a client is disconnected or leaves the server, the timer will still elapse and updates will still be sent out to other clients.
