@@ -31,6 +31,7 @@ includes:
   - drawing
   - checksum
   - voice
+  - multiplayer
 
 search: true
 ---
