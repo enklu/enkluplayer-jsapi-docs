@@ -65,7 +65,7 @@ log.debug('Hello World!');
 var module_1 = { };
 (function(module) {
     log.debug('Hello World!');
-}).call(module_1);
+})(module_1);
 ```
 
 > The runtime will use the specific module's exports to call any lifecycle functions as well any functions to expose to other scripts. Be sure to expose these methods via `module.exports` For example:
@@ -92,5 +92,5 @@ if (typeof module !== 'undefined') {
 }
 ```
 
-All scripts are wrapped in functions to prevent name collision in the global scope. Because of this, all functions that should be exposed to other scripts and the [Lifecycle Functions] should be exported on a `module` object passed in by the runtime. 
+All scripts are wrapped in functions to prevent name collision in the global scope. Because of this, all functions that should be exposed to other scripts and the [Lifecycle Functions](#lifecycle-functions) should be exported on a `module` object passed in by the runtime. 
 
