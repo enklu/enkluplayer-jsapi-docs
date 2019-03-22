@@ -83,13 +83,11 @@ function sayHi() {
     log.debug('Hello!');
 }
 
-if (typeof module !== 'undefined') {
-    module.exports = {
-        enter: enter,
-        exit: exit,
-        sayHi: sayHi
-    };
-}
+module.exports = {
+    enter: enter,
+    exit: exit,
+    sayHi: sayHi
+};
 ```
 
 All scripts are wrapped in functions to prevent name collision in the global scope. Because of this, all functions that should be exposed to other scripts and the [Lifecycle Functions](#lifecycle-functions) should be exported on a `module` object passed in by the runtime. 
