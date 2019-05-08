@@ -4,6 +4,9 @@
 
 ```javascript
 var mp = require('mp');
+
+// Online availability
+mp.isConnected; // true or false
 ```
 
 > To control synchronization between clients, first obtain a context for the element in question. All synchronization for a specific element is directed through this context object.
@@ -58,3 +61,46 @@ function onTouched() {
 The most basic networking primitive provided is the auto-toggle. This construct sets a boolean prop to a specific value, and when a provided number of milliseconds elapses, resets the prop. The prop changes are propagated to all clients currently in the experience.
 
 This construct is connection transparent-- meaning that a connection to the multiplayer server is not required. The prop will be set to a value and flipped back regardless of whether or not the client is connected. If the client is connected, the prop change will propagate to all other clients. A key point here is that the client is not responsible for setting the prop back to the original value when the time has elapsed: the multiplayer server will do this. This is important because if a client is disconnected or leaves the server, the timer will still elapse and updates will still be sent out to other clients.
+
+## Sync
+
+```javascript
+function enter() {
+    var ctx = mp.context(el);
+
+    // Enable position and rotation to be shared across clients.
+    ctx.sync('position');
+    ctx.sync('rotation');
+
+    el.transform.position = vec3(10, 0, 0);
+    el.transform.lookAt(vec3(-1, 0, 0));
+}
+
+// Cleanup when needed.
+function exit() {
+    ctx.unsync('position');
+    ctx.unsync('rotation');
+}
+```
+
+Properties of a multiplayer context can be synchronized across the network easily. Any changes to a property after `sync` has been called will automatically transmit to other clients. `unsync` should be called in an exit function or when no longer needed.
+
+## Builder
+
+```javascript
+var builder = mp.builder(parentEl)
+    .name('NetworkedChild') // Sets the name of the child to be created.
+    .asset(parentEl.findOne('..(@name=Prefab)')); // Sets the asset of the new child to an existing Element's asset.
+```
+
+> Schema values can be set on a builder, which will be defined on the Element it creates
+
+```javascript
+builder.setString('label', 'Look at me');
+builder.setBool('visible', false);
+builder.setNumber('intensity', 0.4);
+builder.setVec('position', vec3(0, 3, 0));
+builder.setCol('color', col(0, 0, 1, 1));
+```
+
+An Element builder is available as part of the `mp` interface. This allows for creating elements for all clients in an experience.
