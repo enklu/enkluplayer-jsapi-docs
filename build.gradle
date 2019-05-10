@@ -33,7 +33,7 @@ build.dependsOn = [install]
 task upload() {
     doLast {
         exec {
-            commandLine 'cmd', '/c', "$awsPath s3 cp build/ s3://${docBucket}/jsapi-v${apiVersion} --recursive"
+            commandLine 'cmd', '/c', "$awsPath s3 cp build/ s3://${docBucket}/jsapi-v${apiVersion} --recursive --acl public-read"
             standardOutput System.out
             errorOutput System.out
         }
