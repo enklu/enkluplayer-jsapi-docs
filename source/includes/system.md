@@ -150,3 +150,48 @@ system.experiences.edit(a.id);
 ```
 
 Experiences may be retrieved in a variety of ways.
+
+## Session
+
+> Start a new session
+
+```javascript
+system.session.start(function(success) {
+    if (!success) {
+        log.warn('Could not start session.');
+        return;
+    } 
+
+    var sessionInfo = system.session.current;
+    log.info('Started a new session for user: ' + sessionInfo.userId);
+});
+```
+
+> Stop a current session
+
+```javascript
+system.session.stop();
+```
+
+> Access to the current session information
+
+```javascript
+var sessionInfo = system.session.current;
+var userId = sessionInfo.userId;
+var sessionId = sessionInfo.sessionId;
+```
+
+> Listen for sessions to start and end from another script
+
+```javascript
+system.session.on('created', function(sessionInfo) {
+    log.info('Started a new session for user: ' + sessionInfo.userId);
+});
+
+system.session.on('ended', function() {
+    log.info('Session ended');
+});
+```
+
+A session is a timespan (set by `start` and `stop` calls) that associates specific player actions with a user. Calling `start` on the session api will bring up a QR code scanner which will prompt a user to scan the QR code generated on their mobile device by the Enklu app. Once the QR is scanned and the session is created, it is possible for any content generation or player action to incorporate session data. For example, snaps which are created and uploaded during an active session will generate an association between the session user and the specific snap taken. Any snaps associated with a session will show up in the user's "My Feed" section of the Enklu mobile app.
+
