@@ -218,19 +218,48 @@ It can become taxing to iterate the element graph to find the elements you need,
 
 ```javascript
 // these two are equivalent
-element.schema.setVec('position', vec3(1, 1, 1));
+element.schema.setVec3('position', vec3(1, 1, 1));
 element.transform.position = vec3(1, 1, 1);
 
 // these two are equivalent
-element.schema.setVec('scale', vec3(1, 1, 1));
+element.schema.setVec3('scale', vec3(1, 1, 1));
 element.transform.scale = vec3(1, 1, 1);
 
 // these two are equivalent
-element.schema.setQuat('rotation', q.euler(0, 0, 0));
+element.schema.setVec3('rotation', vec3(0, 0, 0)); // Internally stored as Euler values.
 element.transform.rotation = q.euler(0, 0, 0);
 ```
 
 Several shortcuts are provided, not least of which is the `transform` object. While `localPosition`, `localRotation`, and `localScale` may all be set via the Schema system, the `transform` object also provides these as raw fields.
+
+
+> World space values exist, though they should be used with care. On HoloLens, world space values include any transform changes an Anchor uses to locate its place in a space.
+
+```javascript
+element.transform.worldPosition;
+element.transform.worldRotation;
+element.transform.worldScale;
+```
+
+> Helper functions exist to manage conversions between world & local coordinate systems.
+
+```javascript
+// Transforms a Vec3 from local space to world space
+element.transform.localToWorld(vec3(0, 0, 1));
+
+// Transforms a Vec3 from world space to local space
+element.transform.worldToLocal(vec3(10, 3, 5));
+```
+
+> Miscellaneous
+
+```javascript
+// Turns an Element to look in a given direction.
+element.transform.lookAt(v.up);
+
+// Gets the position of an Element relative to another.
+elementA.transform.positionRelativeTo(elementB);
+```
 
 ## Events
 
@@ -272,14 +301,6 @@ a.id;             // Readonly - Gets the Element's ID
 a.type;           // Readonly = Gets the Element's type
 
 a.visible = true; // Gets or sets this Element's visibility
-
-// Since schema values report local transform data, this helper
-//  can be used to quickly get an offset between two Elements.
-// Hololens: Elements under different anchors cannot compare
-//  their distances normally, so this function is a must.
-//  Use this function to determine the offset of an Element
-//  relative to another across anchors.
-var offsetVec3 = a.positionRelativeTo(c);
 ```
 
 The Element API has a few other miscellaneous usages for scripting.

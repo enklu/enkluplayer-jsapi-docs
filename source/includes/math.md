@@ -66,13 +66,23 @@ The `vec3` object is useful for working with `Element` translation and scale, or
 var rot = quat(1, 0, 0, 1);
 ```
 
-> More usefully, the q object is provided for constants and basic operations
+> More usefully, the q object is provided for constants and basic operations.
 
 ```javascript
 q.identity;         // identity rotation
 
 q.eul(90, 0, 0);    // creates a quat from Euler rotations
 q.euler(90, 0, 0);  // identical to q.eul
+```
+
+> Rotations can be managed using quats and direction Vec3s.
+
+```javascript
+// Create a rotation from two direction Vec3s
+var rot = q.fromToRotation(v.forward, v.up);
+
+// Rotate a Vec3 by a quat
+var rot = q.rotate(q.eul(0, 90, 0), v.forward);
 ```
 
 The `quat` is provided for three dimensional rotation.
