@@ -8,7 +8,7 @@ The Elements API is a powerful abstraction that allows users to manipulate any p
 
 ```javascript
 var children = element.children;
-for (var i = 0, len = children.length; i++) {
+for (var i = 0, len = children.length; i < len; i++) {
     var child = children[i];
 }
 ```
