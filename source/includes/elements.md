@@ -128,6 +128,19 @@ a.setNumber('foo', 17);
 b.getNumber('foo');         // 17
 ```
 
+> Values can be taken from an Element with explicitly avoiding searching up the graph. A default value for the data type will be set & returned if unprovided.
+
+```javascript
+b.getOwnNumber('foo');        // 0
+b.getOwnNumber('foo', 12);    // 12
+
+b.getOwnString('bar');        // <empty string>
+b.getOwnString('bar', 'flip');// flip
+
+b.getOwnBool('fizz');         // false
+b.getOwnBool('fizz', true);   // true
+```
+
 > Watchers are also called for bound properties.
 
 ```javascript
@@ -146,18 +159,6 @@ b.setNumber('foo', -7);
 
 a.getNumber('foo');         // 17
 b.getNumber('foo');         // -7
-```
-
-> Values can be taken from an Element with explicitly avoiding searching up the graph. A default value for the data type will be set & returned if unprovided.
-```javascript
-b.getOwnNumber('foo');        // 0
-b.getOwnNumber('foo', 12);    // 12
-
-b.getOwnString('bar');        // <empty string>
-b.getOwnString('bar', 'flip'  // flip
-
-b.getOwnBool('fizz');         // false
-b.getOwnBool('fizz', true);   // true
 ```
 
 Elements are designed to have a flexible method of managing, composing, and synchronizing state. To that end, each element has a `schema` object that stores all of the Element's state. Schema are a grab bag of values, each of which may be watched for changes. Additionally, Schema are composable up the graph-- that is, if an element's schema does not contain a specific value, it will look up the graph until the value is found. This is best seen by example.
