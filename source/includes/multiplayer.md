@@ -104,3 +104,22 @@ builder.setCol('color', col(0, 0, 1, 1));
 ```
 
 An Element builder is available as part of the `mp` interface. This allows for creating elements for all clients in an experience.
+
+## Notifications
+
+> Broadcast a notification to all players in the experience.
+
+```javascript
+var notifs = require('mp').notifications;
+notifs.broadcast('ping', 'this is a ping!');
+```
+
+> Listen for notifications from other clients.
+
+```javascript
+notifs.on('ping', function(payload) {
+	log.info(payload); // 'this is a ping'
+});
+```
+
+For sending and receiving arbitrary events, we have provided the `notifications` api on the `mp` interface. This is useful for sending a string payload and a string event type. These events are then broadcast to every client in the experience.
