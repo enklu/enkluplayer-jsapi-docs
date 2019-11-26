@@ -24,6 +24,8 @@ includes:
   - physics
   - tween
   - touch
+  - gaze
+  - hand
   - animator
   - material
   - audio
