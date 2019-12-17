@@ -36,6 +36,7 @@ includes:
   - voice
   - speech-preview
   - multiplayer
+  - kinect
 
 search: true
 ---
