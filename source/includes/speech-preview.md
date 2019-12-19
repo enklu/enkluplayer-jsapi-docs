@@ -30,21 +30,22 @@ Next, register for events from the `speech-preview` api. Register for either int
 ## Data Objects
 
 ### IntentResult
--------------------------------------------
-|*query*|_string_|The raw recognized text.|
-|*topScoringIntent*|_TopScoringIntent_|The intent ranked most likely by LUIS.|
-|*entities*|_Array of Entity_|Predefined entities reference by the intent.|
+
+| *query* | _string_ | The raw recognized text. |
+|---|---|---|
+| *topScoringIntent* | _TopScoringIntent_ | The intent ranked most likely by LUIS. |
+| *entities* |_Array of Entity_ |Predefined entities reference by the intent. |
 
 ### TopScoringIntent
 
------------------------------------------------------
 |*intent*|_string_|The name of the recognized intent|
+|---|---|---|
 |*score*|_number_|A number between 0 and 1 indicating LUIS' confidence that this intent was correctly identified.|
 
 ### Entity
 
--------------------------
 |*name*|_string_|The string value of the entity.|
+|---|---|---|
 |*type*|_string_|The type of entity, as defined in the LUIS portal.|
 |*startIndex*|_number_|The starting index into the intent query string.|
 |*endIndex*|_number_|The end index into the intent query string.| 

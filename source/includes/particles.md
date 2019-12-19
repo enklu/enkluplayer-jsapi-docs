@@ -24,4 +24,4 @@ this.particles.emitOff('active');
 
 Particle emission can be driven through the scripting API. 
 
-<b>Note:</b> The underlying ParticleSystem's maximum particle count will still control the overall system and may not show all particles created through scripting.
+**Note:** The underlying ParticleSystem's maximum particle count will still control the overall system and may not show all particles created through scripting.

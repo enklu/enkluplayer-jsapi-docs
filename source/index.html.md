@@ -37,7 +37,6 @@ includes:
   - voice
   - multiplayer
   - speech-preview
-  - random-preview
   - assets-preview
 
 search: true

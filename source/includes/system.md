@@ -154,16 +154,19 @@ Experiences may be retrieved in a variety of ways.
 ## Login
 
 > Check if the user is logged in.
+
 ```javascript
 log.info(system.isLoggedIn);
 ```
 
 > Prompt the user to Login.
+
 ```javascript
 system.login();
 ```
 
 > Logs out the current user.
+
 ```javascript
 system.logout();
 ```
@@ -268,6 +271,7 @@ A user may own specific items which will populate on the `user` object within a 
 ## Cursor
 
 > Forces the cursor to be shown.
+
 ```javascript
 system.cursor.forceShow = true;
 ```
@@ -278,6 +282,7 @@ By default, the Cursor is only visible when it is near an IUX activator. Setting
 ## Camera
 
 > Changes the near & far planes, measured in meters.
+
 ```javascript
 system.camera.nearPlane = 0.75;
 system.camera.farPlane = 20;
