@@ -151,6 +151,28 @@ system.experiences.edit(a.id);
 
 Experiences may be retrieved in a variety of ways.
 
+## Login
+
+> Check if the user is logged in.
+
+```javascript
+log.info(system.isLoggedIn);
+```
+
+> Prompt the user to Login.
+
+```javascript
+system.login();
+```
+
+> Logs out the current user.
+
+```javascript
+system.logout();
+```
+
+Scripts can check if a user is logged into an account or using a guest account to view a public or bundled experience. The user can be prompted to login, or logged out through this API as well.
+
 ## Session
 
 > Start a new session
@@ -245,3 +267,25 @@ A user may own specific items which will populate on the `user` object within a 
     quantity: <number>
 }
 ```
+
+## Cursor
+
+> Forces the cursor to be shown.
+
+```javascript
+system.cursor.forceShow = true;
+```
+
+By default, the Cursor is only visible when it is near an IUX activator. Setting `forceShow` to be `true` enables the cursor to always be shown.
+
+
+## Camera
+
+> Changes the near & far planes, measured in meters.
+
+```javascript
+system.camera.nearPlane = 0.75;
+system.camera.farPlane = 20;
+```
+
+The camera's near and far planes can be modified through scripts to modify the default frustum culling ranges.

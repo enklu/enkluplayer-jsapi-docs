@@ -30,12 +30,14 @@ includes:
   - animator
   - material
   - audio
+  - particles
   - edit
   - drawing
   - checksum
   - voice
-  - speech-preview
   - multiplayer
+  - speech-preview
+  - assets-preview
 
 search: true
 ---
