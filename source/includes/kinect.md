@@ -32,6 +32,12 @@ Create a Kinect element in the scene and select it to open the accompanying insp
 const ctx = kinect.context();
 ```
 
+> The context can be queried to show if the platform supports Kinect.
+
+```javascript
+log.info(ctx.isSupported);
+```
+
 > Next, start the kinect by passing in the element the Kinect should attach elements to. On exit, the kinect context should generally be stopped.
 
 ```javascript
@@ -82,23 +88,80 @@ The Kinect API will dispatch events when a new body is recognized or when a reco
 
 ```javascript
 ctx.startTracking(self);
-ctx.mirrotComposite = true;
+ctx.mirrorComposite = true;
 ```
 
 The Kinect API will composite the camera feed into the scene using real depth. However, depending on whether the user is looking at themselves in a display or other people are watching the user through a display, you may want to mirror the composite image. This is done by simply setting the `mirrorComposite` field on the context.
 
-## Azure Kinect Specifics
+## Debugging
 
-> Since the depth image used for compositing refreshes at a slower rate than the screen, use `depthDecay` to effectively blur the depth in between frames.
+> View the Depth feed from the Kinect.
 
 ```javascript
-context.depthDecay = 10;
+ctx.debugDepth = true;
 ```
 
-> Use `maxDepthEllipse`.
+Sometimes it can be useful to visualize the depth feed coming from the Kinect. Setting `debugDepth` to true will show a black and white depth feed instead of Color data.
+
+## Azure Kinect Specifics
+
+> Since the depth image used for compositing refreshes at a slower rate than the screen, use `depthDecay` to effectively blur the depth in between frames. This is measured in seconds.
+
+```javascript
+context.depthDecay = 0.2;
+```
+
+> Use `maxDepth` to control the maximum distance the Kinect feed can render overtop AR content. This can be helpful when trying to show AR content as a backdrop.
+
+```javascript
+context.maxDepth = 5;
+```
+
+> Use `maxDepthEllipse` to provide greater control over `maxDepth`. Separate values can be exposed for controlling the maximums for height vs depth, realtive to the camera.
 
 ```javascript
 context.maxDepthEllipse = v.create(10, 10, 0);
 ```
 
 The Azure Kinect has a few additional APIs that the Kinect V2 does not have.
+
+## Post Processing (Azure Kinect)
+
+> Control the overall PostProcessing layer.
+
+```javascript
+ctx.postProcessing.enabled = true;
+```
+
+> Control Bloom and its related settings.
+
+```javascript
+ctx.postProcessing.bloom.enabled = true;
+ctx.postProcessing.bloom.intensity = 6;
+ctx.postProcessing.bloom.threshold = 3.5;
+ctx.postProcessing.bloom.softKnee = 2;
+ctx.postProcessing.bloom.diffusion = 5;
+ctx.postProcessing.bloom.color = col(0.2, 0.6, 0.4, 1);
+```
+
+> Control the Vignette and its related settings.
+
+```javascript
+ctx.postProcessing.vignette.enabled = true;
+ctx.postProcessing.vignette.color = col(0, 1, 1, 1);
+ctx.postProcessing.vignette.center = vec3(0.5, 0.5, 0);
+ctx.postProcessing.vignette.intensity = 6;
+ctx.postProcessing.vignette.rounded = true;
+```
+
+> Control Auto Exposure related settings.
+
+```javascript
+ctx.postProcessing.exposure.enabled = true;
+ctx.postProcessing.exposure.filtering = vec3(0.6, 0.9, 0);
+ctx.postProcessing.exposure.maximum = 3;
+ctx.postProcessing.exposure.minimum = 6.5;
+ctx.postProcessing.exposure.compensation = 5;
+```
+
+PostProcessing basics can be controlled and configured through the context. A default PostProcessing profile exists, so not every example control listed needs to be set.
