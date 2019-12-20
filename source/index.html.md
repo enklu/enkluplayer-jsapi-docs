@@ -36,6 +36,7 @@ includes:
   - checksum
   - voice
   - multiplayer
+  - kinect
   - speech-preview
   - assets-preview
 
