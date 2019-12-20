@@ -11,14 +11,21 @@ The Particles API is available on any Element that contains an Asset with an und
 
 ## Emission
 
+> Emit 10 particles.
+
 ```javascript
-// Emit 10 particles.
 this.particles.emit(10);
+```
 
-// Configure particles to emit when a bool schema value changes.
+> Configure particles to emit when a bool schema value changes.
+
+```javascript
 this.particles.emitOn('active', 5);
+```
 
-// Cleanup `emitOn` subscription
+> Cleanup `emitOn` subscription
+
+```javascript
 this.particles.emitOff('active');
 ```
 
