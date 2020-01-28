@@ -32,3 +32,32 @@ app.elements.destroy(button);
 ```
 
 The `elements` object can be used to query all scenes for an element, create elements, or destroy them.
+
+## SAI object
+
+```javascript
+// enables SAI
+app.sai.enabled = true;
+
+// focus on an element
+app.sai.focus(button);
+app.sai.focut(button, onComplete);
+
+// follow the player
+app.sai.unfocus();
+
+// display some text
+var message = "Hello, world.";
+app.sai.write(message);
+
+// speak in plain text or SSML
+app.sai.speak(message, onComplete);
+
+// teleport directly to an element
+app.sai.teleport(button);
+
+// or back to the player
+app.sai.teleport();
+```
+
+The `sai` object can be used to control the Spatial Artificial Intelligence familiar. Use SAI to communicate essential information about a scene or direct a player's attention toward important elements.
