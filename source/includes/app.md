@@ -39,9 +39,9 @@ The `elements` object can be used to query all scenes for an element, create ele
 // enables SAI
 app.sai.enabled = true;
 
-// focuses SAI on an element or follow the player
+// focuses SAI on an element or the player
 app.sai.focus(button);
-app.sai.focut(button, onComplete);
+app.sai.focus(button, onComplete);
 app.sai.unfocus();
 
 // displays some text next to SAI
