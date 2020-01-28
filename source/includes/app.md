@@ -57,4 +57,4 @@ app.sai.teleport(button);
 app.sai.teleport();
 ```
 
-The `sai` object can be used to control the Spatial Artificial Intelligence familiar. Use SAI to communicate essential information about a scene or direct a player's attention toward important elements.
+The `sai` object can be used to control the Spatial Artificial Intelligence familiar. Use SAI to communicate essential information about a scene or direct a player's attention toward an important element.
