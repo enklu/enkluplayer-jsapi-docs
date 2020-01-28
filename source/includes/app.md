@@ -39,24 +39,21 @@ The `elements` object can be used to query all scenes for an element, create ele
 // enables SAI
 app.sai.enabled = true;
 
-// focus on an element
+// focuses SAI on an element or follow the player
 app.sai.focus(button);
 app.sai.focut(button, onComplete);
-
-// follow the player
 app.sai.unfocus();
 
-// display some text
+// displays some text next to SAI
 var message = "Hello, world.";
 app.sai.write(message);
 
-// speak in plain text or SSML
+// speaks in plain text or SSML
+app.sai.speak(message);
 app.sai.speak(message, onComplete);
 
-// teleport directly to an element
+// teleports SAI directly to an element or back to the player
 app.sai.teleport(button);
-
-// or back to the player
 app.sai.teleport();
 ```
 
