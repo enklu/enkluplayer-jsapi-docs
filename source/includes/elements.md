@@ -68,6 +68,14 @@ element.schema.getNumber('bar');                    // 12
 // bools
 element.schema.setBool('fizz', true);
 element.schema.getBool('fizz');                     // true
+
+// vec3
+element.schema.setVec3('position', vec3(0, 0, 0));
+element.schema.getVec3('position');                 // (0, 0, 0)
+
+// col4
+element.schema.setCol('color', col(0, 0, 0, 0));
+element.schema.getCol('color');                     // (0, 0, 0, 0)
 ```
 
 > Properties may also be watched for changes.
