@@ -46,7 +46,7 @@ app.elements.destroy(button);
 
 The `elements` object can be used to query all scenes for an element, create elements, or destroy them.
 
-## SAI object
+## SAI object (Preview)
 
 > Enables SAI
 
@@ -54,22 +54,29 @@ The `elements` object can be used to query all scenes for an element, create ele
 app.sai.enabled = true;
 ```
 
-> Focuses SAI on an element or the player
+> Focuses SAI on an element. An optional callback can be provided that will be invoked when SAI reaches the target element.
 
 ```javascript
 app.sai.focus(button);
 app.sai.focus(button, onComplete);
+```
+
+> Remove SAI's focus target and follow the player.
+
+```javascript
 app.sai.unfocus();
 ```
 
-> Displays some text next to SAI
+> Displays some text next to SAI. An optional timeout can be provided that will clear the text when it expires. If the timeout is set, a callback can also be provided that will be invoked when the timeout expires.
 
 ```javascript
 var message = "Hello, world.";
 app.sai.write(message);
+app.sai.write(message, timeoutMs);
+app.sai.wrtie(message, timeoutMs, onComplete);
 ```
 
-> Speaks in plain text or SSML
+> Speaks in plain text or SSML. An optional callback can be provided that will be invoked after speech synthesis playback completes.
 
 ```javascript
 app.sai.speak(message);
@@ -81,6 +88,12 @@ app.sai.speak(message, onComplete);
 ```javascript
 app.sai.teleport(button);
 app.sai.teleport();
+```
+
+> Plays one of SAI's animations Currently supported values are `Happy`, `Sad`, `Idle`, `Move`, `Pulse`, `Talk`, `Scan`, `Highlight`, and `Work`. 
+
+```javascript
+app.sai.animate('Happy');
 ```
 
 The `sai` object can be used to control the Spatial Artificial Intelligence familiar. Use SAI to communicate essential information about a scene or direct a player's attention toward an important element.
