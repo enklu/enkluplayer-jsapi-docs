@@ -61,7 +61,7 @@ app.sai.focus(button);
 app.sai.focus(button, onComplete);
 ```
 
-> Remove SAI's focus target and follow the player.
+> Removes an exising focus target and tells SAI to follow the player.
 
 ```javascript
 app.sai.unfocus();
