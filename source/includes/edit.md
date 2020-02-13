@@ -20,7 +20,17 @@ if (edit.isConnected) {
 }
 ```
 
-First, make sure the edit api is connected to the Enklu platform. This is generally done after checking the `isConnected` flag.
+> Add listener for connection changes.
+
+```javascript
+edit.on('connectionchange', function (isConnected) {
+	if (!isConnected) {
+		log.warn('We were just disconnected!');
+	}
+});
+```
+
+First, make sure the edit api is connected to the Enklu platform. This is generally done after checking the `isConnected` flag. The `edit` object also fires events when the `isConnected` value changes, i.e. as the device connects and disconnects from the authoring server.
 
 ## Transactions
 
