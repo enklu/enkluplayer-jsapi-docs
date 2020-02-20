@@ -39,6 +39,7 @@ includes:
   - kinect
   - speech-preview
   - assets-preview
+  - score
 
 search: true
 ---
