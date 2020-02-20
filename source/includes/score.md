@@ -5,9 +5,7 @@ var score = require('score');
 ```
 The score API allows users to define different score types, update scores, as well as define their visual characteristics.
 
-##Creating a score
-
-Every score is attached to a `type` name. The user can choose to specify an `Element` to make marginal scores appear around that `Element`.  The user can also initiate a score without any element so it appears in front of the user, or specify the location of the score when configuring it.
+##Creating a Score
 
 ```javascript 
 // Initialize score with specified element. Spawned marginal scores will appear around that element
@@ -15,32 +13,16 @@ var coinsScore = score.type(this, 'coins');
 
 // Initialize score without element. Spawned marginal scores will appear in front of the camera
 var points = score.type(this, 'points);
-
 ```
-##Configuring a score
+
+Every score is attached to a `type` name. The user can choose to specify an `Element` to make marginal scores appear around that `Element`.  The user can also initiate a score without any element so it appears in front of the user, or specify the location of the score when configuring it.
+
+##Configuring a Score
 
 Each parameter of the score can be controlled through calling a method of the score. These functions can be chained.
 
-All of the parameters are optional. The default values are the following if there are no specifications:
-
- Score = 0
-
- Color = Col4(1, 1, 1, 1)
-
- Font Size = 60
-
- Location = null
-
- Duration = 1s
-
- Random Range = 0
-
- Prefix = “”
-
-Suffix = “”
-
 ```javascript
-var score = require(‘score’);
+var score = require('score');
 
 //declares a score object
 var coinsScore = score.type(this, 'coins')
@@ -68,9 +50,26 @@ var coinsScore = score.type(this, 'coins')
 
 //adds 'pts' as a suffix
 .suffix('pts');
-
 ```
-##Adding score
+All of the parameters are optional. The default values are the following if there are no specifications:
+
+ **Score**: 0
+
+ **Color**: Col4(1, 1, 1, 1)
+
+ **Font Size**: 60
+
+ **Location**: null
+
+ **Duration**: 1s
+
+ **Random Range**: 0
+
+ **Prefix**: ""
+
+ **Suffix**: ""
+
+##Adding Score
 
 Scores can be directly added to the Score object declared. They can also be added through the score manager. 
 
@@ -80,13 +79,28 @@ var coinsScore = score.type('coins');
 
 coinsScore.award(2);
 
-
 //add score through score manager
 score.award('coins', 2);
-
 ```
 
-## Messages on increase/decrease
+## Messages on Score Change
 A global message `score-increase` is dispatched whenever a score increases. A global message `score-decrease` is dispatched whenever a score decreases.
 
+```javascript
+const messages = require('messages');
+
+const MSG_SCORE_INCREASE = 'score-increase';
+
+function enter() {
+	messages.on(MSG_SCORE_INCREASE, onIncrease); 
+}
+
+function onIncrease() {
+	//do sth on score increase
+}
+
+function exit() {
+	messages.off(MSG_SCORE_INCREASE, onIncrease);
+}
+```
 
