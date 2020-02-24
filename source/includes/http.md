@@ -31,7 +31,7 @@ http
     .then(res => {
         var json = JSON.parse(res.text());
 
-        log.info('Currentl web version is ' + json.body.version);
+        log.info('Current web version is ' + json.body.version);
     });
 ```
 
