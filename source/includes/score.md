@@ -210,20 +210,24 @@ score.award('water',this.transform.position, 3);  //score appears around element
 ## Messages on Score Change
 
 ```javascript
-const messages = require('messages');
+const scoreManager = require('score');
 
 const MSG_SCORE_INCREASE = 'score-increase';
 
 function enter() {
-	messages.on(MSG_SCORE_INCREASE, onIncrease); 
+        scoreManager.on(MSG_SCORE_INCREASE, onIncrease);
 }
 
-function onIncrease() {
-	//do sth on score increase
+function onIncrease(type, margin) {
+        //do sth on coins score increase
+        if(type == 'coins') {
+        log.info("Coins increased by " + margin);
+        }
 }
 
 function exit() {
-	messages.off(MSG_SCORE_INCREASE, onIncrease);
+        scoreManager.off(MSG_SCORE_INCREASE, onIncrease);
 }
 ```
-A global message `score-increase` is dispatched whenever a score increases. A global message `score-decrease` is dispatched whenever a score decreases.
+A local message `score-increase` is dispatched whenever a score increases. A local message `score-decrease` is dispatched whenever a score decreases. Each of these messages include two payloads: the first one is the type name of the increased/decreased score, and the second one is the marginal score.
+
