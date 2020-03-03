@@ -73,7 +73,27 @@ app.sai.unfocus();
 var message = "Hello, world.";
 app.sai.write(message);
 app.sai.write(message, timeoutMs);
-app.sai.wrtie(message, timeoutMs, onComplete);
+app.sai.write(message, timeoutMs, onComplete);
+```
+
+> Displays a timed sequence of text. If a callback is provided, it will be invoked after the final text times out.
+
+```javascript
+var dialog = {
+  script: [
+    {
+      text: "Hi, I'm SAI.",
+      timeoutMs: 2000
+    },
+    {
+      text: "It's great to meet you.",
+      timeoutMs: 3000
+    }
+  ]
+};
+
+app.sai.write(dialog);
+app.sai.write(dialog, onComplete);
 ```
 
 > Speaks in plain text or SSML. An optional callback can be provided that will be invoked after speech synthesis playback completes.
