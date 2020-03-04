@@ -36,6 +36,16 @@ function exit(){
 
 Any Element can be subscribed for a proximity event. Callbacks are invoked with a reference to the Trigger that entered its `innerRadius`. Any Trigger that is above or below a subscribed Element in the hierarchy won't invoke events. It is good practice to call subscribe in a script's `enter` and unsubscribe in `exit`.
 
+```javascript
+function onTriggerEnter(listener, trigger) {
+  log.info('Proximity Event!');
+  log.info('  Listener: ' + listener);
+  log.info('  Trigger: ' + trigger);
+}
+```
+
+The proximity callbacks have optional arguments, which contain information on which listener & trigger were responsible for the event.
+
 ## Schema
 
 ```javascript

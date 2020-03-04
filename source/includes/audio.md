@@ -9,6 +9,22 @@ if (!this.audio) {
 
 The Audio API is available on any Element whose Asset contains an audio clip. It's recommended to use a null check to ensure all instances of your script have their dependencies.
 
+## Controlling Playback
+
+> Start the audio playback.
+
+```javascript
+this.audio.play();
+```
+
+> Stop the audio playback.
+
+```javascript
+this.audio.stop();
+```
+
+A visible Element containing audio can be started and stopped using `play` and `stop`.
+
 ## Modifying Properties
 
 ```javascript

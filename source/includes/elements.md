@@ -252,14 +252,17 @@ element.transform.localToWorld(vec3(0, 0, 1));
 element.transform.worldToLocal(vec3(10, 3, 5));
 ```
 
+> A transform's local forward direction can be used.
+
+```javascript
+element.transform.forward;
+```
+
 > Miscellaneous
 
 ```javascript
 // Turns an Element to look in a given direction.
 element.transform.lookAt(v.up);
-
-// Gets the position of an Element relative to another.
-elementA.transform.positionRelativeTo(elementB);
 ```
 
 ## Events
