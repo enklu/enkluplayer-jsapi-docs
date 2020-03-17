@@ -1,4 +1,4 @@
-# Score
+# Score (Preview)
 
 ```javascript
 var score = require('score');
@@ -9,10 +9,10 @@ The score API allows users to define different score types, update scores, as we
 
 ```javascript 
 // Initialize score with specified element. Spawned marginal scores will appear around that element
-var coinsScore = score.type(this, 'coins');
+var coinsScore = score.create(this, 'coins');
 
 // Initialize score without element. Spawned marginal scores will appear in front of the camera or at the specified location
-var points = score.type('points);
+var points = score.create('points');
 ```
 
 Every score is attached to a `type` name. The user can choose to specify an `Element` to make marginal scores appear around that `Element`.  The user can also initiate a score without any element so it appears in front of the user, or specify the location of the score when configuring it.
@@ -23,13 +23,13 @@ Every score is attached to a `type` name. The user can choose to specify an `Ele
 var score = require('score');
 
 //declares a score object
-var coinsScore = score.type(this, 'coins')
+var coinsScore = score.create(this, 'coins')
 
 //sets initial score to be 10
-.initScore(10)
+.score(10)
 
 //sets the color of margin score display to be red
-.color(new Col4(1,0,0,1))
+.color(new col4(1,0,0,1))
 
 //sets margin score display font size to be 90
 .fontSize(90)
@@ -37,19 +37,24 @@ var coinsScore = score.type(this, 'coins')
 //sets score display offset
 //When there is an element attached, this is the local offset
 //When there is none attached, this is the global offset
-.offset(new Vec3(3,3,0))
+.offset(new vec3(3,3,0))
 
 //sets duration of margin score display to be 2 seconds
 .duration(2)
 
 //spawns the marginal scores at a random location within the specified range
-.randomRange(1)
+.randomPosRange(1)
 
-//adds a '+' sign as a prefix
-.prefix('+')
+//defines the string fromatting of the spawned visualization. {score} will be replaced with the marginal score
+//if marginal score is 2, the visualization spawned is 'You received 2 points!'
+.scoreFormat('You received {score} points!');
 
-//adds 'pts' as a suffix
-.suffix('pts');
+//mutes sound fx
+.mute(true);
+
+//sets the vine that displays the updated total score
+.setDisplayVine(this.parent.findOne(..'coins-score'));
+
 ```
 
 Each parameter of the score can be controlled through calling a method of the score. These functions can be chained.
@@ -67,16 +72,16 @@ All of the parameters are optional. The default values are the following if ther
 
  **Duration**: 1s
 
- **Random Range**: 0
+ **Random Position Range**: 0
 
- **Prefix**: ""
+ **Score Format**: ""
 
- **Suffix**: ""
+ **Muted**: false
 
 ##Adding Score 
 
 ```javascript
-var coinsScore = score.type('coins');
+var coinsScore = score.create('coins');
 
 //add score directly to score object
 coinsScore.award(2);
@@ -91,15 +96,15 @@ score.award('coins', 3);
 score.award('coins', 3, vec3(0, 1, 1));  
 
 //add score without spawning visualization
-coinsScore.awardHidden(10);
-score.awardHidden('coins', 8);
+coinsScore.awardWithoutVisualization(10);
+score.awardWithoutVisualization'coins', 8);
 
 //clear score to 0
 coinsScore.clearScore();
 score.clearScore('coins');
 ```
 
-Scores can be directly added to the Score object declared. They can also be added through the score manager. Scores can be awarded without showing any visual indication using `awardHidden`.
+Scores can be directly added to the Score object declared. They can also be added through the score manager. Scores can be awarded without showing any visual indication using `awardWithoutVisualization`.
 
 ##Access and Modify Score Parameters
 
@@ -108,11 +113,26 @@ const score = require('score');
 
 //access to specific score and make modifications
 var coinsScore = score.getType('coins');
-coinsScore.FontSize = 100;
-log.info(coinsScore.Data.FontSize);     //prints 100
+coinsScore.score(10)
+	.fontSize(100)
+	.color(new col4(0,0,0,1))
+	.offset(new vec3(1,2,3))
+	.duration(3)
+	.randomPosRange(1.5)
+	.scoreFormat('+ {score} pts') 
+	.mute(true)
+	.setDisplayVine(this.findOne(..'coins-score'));
 
-//Current score can also be directly accessed by through the score manager
-score.getScore('coins');
+log.info(coinsScore.getName());			//prints 'coins'
+log.info(coinsScore.getScore());        	//prints 10
+log.info(coinsScore.getFontSize());     	//prints 100
+log.info(coinsScore.getColor());		//prints col4(0,0,0,1)
+log.info(coinsScore.getOffset());		//prints vec3(1,2,3)
+log.info(coinsScore.getDuration());      	//prints 3
+log.info(coinsScore.getRandomPosRange()); 	//prints 1.5 
+log.info(coinsScore.getScoreFormat());   	//prints '+ {score} pts'
+log.info(coinsScore.isMuted()); 	 	//prints true
+log.info(coinsScore.getDisplayVine); 	 	//prints the vine element
 
 ```
 The score manager has reference to all created scores. All score information can be accessed and modified through the manager.
@@ -127,9 +147,9 @@ The score manager has reference to all created scores. All score information can
 const score = require('score');
 
 //when there is only one mushroom and spawns score around it
-var mushroomScore = score.type(this, 'mushroom')
-        .initScore(2)
-        .offSet(vec3(0, -0.1, 0));
+var mushroomScore = score.create(this, 'mushroom')
+        .score(2)
+        .offset(vec3(0, -0.1, 0));
 
 mushroomScore.award(2);     //score appears slightly below element 1's position
 
@@ -152,7 +172,7 @@ Score will appear at different locations depending on how you declare them, what
 const score = require('score');
 
 //declare ScoreJs with no element attached
-var butterflyScore= score.type('butterfly');
+var butterflyScore= score.create('butterfly');
 
 butterflyScore.award(2);     //score appears in front of player's field of view
 
@@ -169,8 +189,8 @@ score.award('butterfly', 2);  //score appears in front of player's field of view
 const score = require('score');
 
 //declare ScoreJs with no element attached, but specifies global offset
-var planetScore= score.type('planet')
-                      .location(vec3(0, 0, 0));
+var planetScore= score.create('planet')
+                      .offset(vec3(0, 0, 0));
 
 
 planetScore.award(2);     //score appears at position (0, 0, 0) even if element 1 changes position
@@ -190,7 +210,7 @@ score.award('planet', 2);  //score appears at position (0, 0, 0)
 const score = require('score');
 
 //declare ScoreJs with no element attached, but specifies location
-var waterScore= score.type('water')
+var waterScore= score.create('water')
                       .offset(this.transform.position);
 
 
