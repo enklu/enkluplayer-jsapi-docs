@@ -1,17 +1,21 @@
 # Score (Preview)
 
 ```javascript
-var score = require('score');
+var score = require('score-preview');
 ```
 The score API allows users to define different score types, update scores, as well as define their visual characteristics.
 
 ##Creating a Score
+ 
+> Initialize score with specified element. Spawned marginal scores will appear around that element
 
-```javascript 
-// Initialize score with specified element. Spawned marginal scores will appear around that element
+```javascript
 var coinsScore = score.create(this, 'coins');
+```
 
-// Initialize score without element. Spawned marginal scores will appear in front of the camera or at the specified location
+> Initialize score without element. Spawned marginal scores will appear in front of the camera or at the specified location
+
+```javascript
 var points = score.create('points');
 ```
 
@@ -20,40 +24,40 @@ Every score is attached to a `type` name. The user can choose to specify an `Ele
 ##Configuring a Score.
 
 ```javascript
-var score = require('score');
+var score = require('score-preview');
 
 //declares a score object
 var coinsScore = score.create(this, 'coins')
 
 //sets initial score to be 10
-.score(10)
+coinsScore.score(10)
 
 //sets the color of margin score display to be red
-.color(new col4(1,0,0,1))
+coinsScore.color(new col4(1,0,0,1))
 
 //sets margin score display font size to be 90
-.fontSize(90)
+coinsScore.fontSize(90)
 
 //sets score display offset
 //When there is an element attached, this is the local offset
 //When there is none attached, this is the global offset
-.offset(new vec3(3,3,0))
+coinsScore.offset(new vec3(3,3,0))
 
 //sets duration of margin score display to be 2 seconds
-.duration(2)
+coinsScore.duration(2)
 
 //spawns the marginal scores at a random location within the specified range
-.randomPosRange(1)
+coinsScore.randomPosRange(1)
 
 //defines the string fromatting of the spawned visualization. {score} will be replaced with the marginal score
 //if marginal score is 2, the visualization spawned is 'You received 2 points!'
-.scoreFormat('You received {score} points!');
+coinsScore.scoreFormat('You received {score} points!');
 
 //mutes sound fx
-.mute(true);
+coinsScore.mute(true);
 
 //sets the vine that displays the updated total score
-.setDisplayVine(this.parent.findOne(..'coins-score'));
+coinsScore.setDisplayVine(this.parent.findOne(..'coins-score'));
 
 ```
 
@@ -82,24 +86,42 @@ All of the parameters are optional. The default values are the following if ther
 
 ```javascript
 var coinsScore = score.create('coins');
+```
 
-//add score directly to score object
+> Add score directly to score object
+
+```javascript
 coinsScore.award(2);
- 
-//add score directly to score object at specified location
+```
+
+> Add score directly to score object at specified location
+
+```javascript
 coinsScore.award(2, vec3(0, 1, 1));
+```
 
-//add score through score manager
+> Add score through score manager
+
+```javascript
 score.award('coins', 3);
+```
 
-//add score directly to score object at specified location
+> Add score directly to score object at specified location
+
+```javascript
 score.award('coins', 3, vec3(0, 1, 1));  
+```
 
-//add score without spawning visualization
+> Add score without spawning visualization
+
+```javascript
 coinsScore.awardWithoutVisualization(10);
-score.awardWithoutVisualization'coins', 8);
+score.awardWithoutVisualization('coins', 8);
+```
 
-//clear score to 0
+> Clear score to 0
+
+```javascript
 coinsScore.clearScore();
 score.clearScore('coins');
 ```
@@ -108,10 +130,11 @@ Scores can be directly added to the Score object declared. They can also be adde
 
 ##Access and Modify Score Parameters
 
-```javascript
-const score = require('score');
+> Access to specific score and make modifications
 
-//access to specific score and make modifications
+```javascript
+const score = require('score-preview');
+
 var coinsScore = score.getType('coins');
 coinsScore.score(10)
 	.fontSize(100)
@@ -123,15 +146,15 @@ coinsScore.score(10)
 	.mute(true)
 	.setDisplayVine(this.findOne(..'coins-score'));
 
-log.info(coinsScore.getName());			//prints 'coins'
+log.info(coinsScore.getName());				//prints 'coins'
 log.info(coinsScore.getScore());        	//prints 10
 log.info(coinsScore.getFontSize());     	//prints 100
-log.info(coinsScore.getColor());		//prints col4(0,0,0,1)
-log.info(coinsScore.getOffset());		//prints vec3(1,2,3)
+log.info(coinsScore.getColor());			//prints col4(0,0,0,1)
+log.info(coinsScore.getOffset());			//prints vec3(1,2,3)
 log.info(coinsScore.getDuration());      	//prints 3
 log.info(coinsScore.getRandomPosRange()); 	//prints 1.5 
 log.info(coinsScore.getScoreFormat());   	//prints '+ {score} pts'
-log.info(coinsScore.isMuted()); 	 	//prints true
+log.info(coinsScore.isMuted()); 	 		//prints true
 log.info(coinsScore.getDisplayVine); 	 	//prints the vine element
 
 ```
@@ -139,12 +162,12 @@ The score manager has reference to all created scores. All score information can
 
 ##Spawned Score Location
 
->Scores declared with attached Element
+> Scores declared with attached Element
 
 ```javascript
 // Score attached to element
 //----------element 1---------
-const score = require('score');
+const score = require('score-preview');
 
 //when there is only one mushroom and spawns score around it
 var mushroomScore = score.create(this, 'mushroom')
@@ -154,7 +177,7 @@ var mushroomScore = score.create(this, 'mushroom')
 mushroomScore.award(2);     //score appears slightly below element 1's position
 
 //----------element 2---------
-const score = require('score');
+const score = require('score-preview');
 score.award('mushroom' , 2);  //score appears slightly below element 1 position
 ```
 
@@ -165,11 +188,11 @@ Score will appear at different locations depending on how you declare them, what
 **Scores declared without attached Element, and without offset** The spawned score will appear directly in fron of the user's field of view. 
 *Please not that if the offset is later assigned, the score will be spawned like the type below.*
 
->No elements attached, no offset specified
+> No elements attached, no offset specified
 
 ```javascript
 //----------element 1---------
-const score = require('score');
+const score = require('score-preview');
 
 //declare ScoreJs with no element attached
 var butterflyScore= score.create('butterfly');
@@ -177,7 +200,7 @@ var butterflyScore= score.create('butterfly');
 butterflyScore.award(2);     //score appears in front of player's field of view
 
 //----------element 2---------
-const score = require('score');
+const score = require('score-preview');
 score.award('butterfly', 2);  //score appears in front of player's field of view
 ```
 
@@ -186,7 +209,7 @@ score.award('butterfly', 2);  //score appears in front of player's field of view
 
 ```javascript
 //----------element 1---------
-const score = require('score');
+const score = require('score-preview');
 
 //declare ScoreJs with no element attached, but specifies global offset
 var planetScore= score.create('planet')
@@ -196,7 +219,7 @@ var planetScore= score.create('planet')
 planetScore.award(2);     //score appears at position (0, 0, 0) even if element 1 changes position
 
 //----------element 2---------
-const score = require('score');
+const score = require('score-preview');
 score.award('planet', 2);  //score appears at position (0, 0, 0) 
 ```
 
@@ -207,7 +230,7 @@ score.award('planet', 2);  //score appears at position (0, 0, 0)
 ```javascript
 // Each element spawn score at their corresponding place, but all contribute to same score
 //----------element 1---------
-const score = require('score');
+const score = require('score-preview');
 
 //declare ScoreJs with no element attached, but specifies location
 var waterScore= score.create('water')
@@ -217,12 +240,12 @@ var waterScore= score.create('water')
 waterScore.award(2);     //score appears around element 1, award points to water score
 
 //----------element 2---------
-const score = require('score');
+const score = require('score-preview');
 score.award('water',this.transform.position, 2);  //score appears around element 2 location, 
                                                   //award points to water score
 
 //----------element 3---------
-const score = require('score');
+const score = require('score-preview');
 score.award('water',this.transform.position, 3);  //score appears around element 3 location,
                                                   //award points to water score 
 ```
@@ -230,7 +253,7 @@ score.award('water',this.transform.position, 3);  //score appears around element
 ## Messages on Score Change
 
 ```javascript
-const scoreManager = require('score');
+const scoreManager = require('score-preview');
 
 const MSG_SCORE_INCREASE = 'score-increase';
 
