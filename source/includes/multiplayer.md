@@ -103,6 +103,18 @@ builder.setVec('position', vec3(0, 3, 0));
 builder.setCol('color', col(0, 0, 1, 1));
 ```
 
+> The builder will only build one Element, once the `build` function is called.
+
+```javascript
+builder.build(function(err, elm) {
+  if (err) {
+    log.error('Error building Element: ' + err);
+  } else {
+    log.info('Element built successfully: ' + elm);
+  }
+});
+```
+
 An Element builder is available as part of the `mp` interface. This allows for creating elements for all clients in an experience.
 
 ## Notifications

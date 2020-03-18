@@ -39,13 +39,22 @@ function inverseDirection() {
 
 // Col
 function cycleColor() {
-	var color = this.material.getColor('_Tint');
-	this.material.setColor('_Tint', col(color.g, color.b, color.r, color.a));
+	var color = this.material.getColor('_Color');
+	this.material.setColor('_Color', col(color.g, color.b, color.r, color.a));
 }
-
 ```
 
 Supported parameter types are: Float/Integer/Vec3/Col. All parameter types can be both retrieved and set.
+
+### RenderQueue
+
+> Set's the RenderQueue to be just after the default transparent pass.
+
+```javascript
+this.material.renderQueue = 3001;
+```
+
+It's possible to change the default RenderQueue of a material if needed. Changing between Opaque and Transparent queues can have unintended side effects depending on the Asset's shader.
 
 ## Tween Integration
 

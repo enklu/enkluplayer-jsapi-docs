@@ -36,10 +36,12 @@ includes:
   - checksum
   - voice
   - multiplayer
+  - http
   - kinect
   - speech-preview
   - assets-preview
   - score
+  - storage-preview
 
 search: true
 ---
