@@ -27,27 +27,27 @@ Every score is attached to a `type` name. The user can choose to specify an `Ele
 var score = require('score-preview');
 
 //declares a score object
-var coinsScore = score.create(this, 'coins')
+var coinsScore = score.create(this, 'coins');
 
 //sets initial score to be 10
-coinsScore.score(10)
+coinsScore.score(10);
 
 //sets the color of margin score display to be red
-coinsScore.color(new col4(1,0,0,1))
+coinsScore.color(col(1,0,0,1));
 
 //sets margin score display font size to be 90
-coinsScore.fontSize(90)
+coinsScore.fontSize(90);
 
 //sets score display offset
 //When there is an element attached, this is the local offset
 //When there is none attached, this is the global offset
-coinsScore.offset(new vec3(3,3,0))
+coinsScore.offset(vec3(3,3,0));
 
 //sets duration of margin score display to be 2 seconds
-coinsScore.duration(2)
+coinsScore.duration(2);
 
 //spawns the marginal scores at a random location within the specified range
-coinsScore.randomPosRange(1)
+coinsScore.randomPosRange(1);
 
 //defines the string fromatting of the spawned visualization. {score} will be replaced with the marginal score
 //if marginal score is 2, the visualization spawned is 'You received 2 points!'
@@ -57,7 +57,7 @@ coinsScore.scoreFormat('You received {score} points!');
 coinsScore.mute(true);
 
 //sets the vine that displays the updated total score
-coinsScore.setDisplayVine(this.parent.findOne(..'coins-score'));
+coinsScore.setDisplayVine(this.parent.findOne('..coins-score'));
 
 ```
 
@@ -138,13 +138,13 @@ const score = require('score-preview');
 var coinsScore = score.getType('coins');
 coinsScore.score(10)
 	.fontSize(100)
-	.color(new col4(0,0,0,1))
-	.offset(new vec3(1,2,3))
+	.color(col(0,0,0,1))
+	.offset(vec3(1,2,3))
 	.duration(3)
 	.randomPosRange(1.5)
 	.scoreFormat('+ {score} pts') 
 	.mute(true)
-	.setDisplayVine(this.findOne(..'coins-score'));
+	.setDisplayVine(this.findOne('..coins-score'));
 
 log.info(coinsScore.getName());				//prints 'coins'
 log.info(coinsScore.getScore());        	//prints 10
