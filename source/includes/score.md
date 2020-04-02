@@ -46,12 +46,15 @@ coinsScore.offset(vec3(3,3,0));
 //sets duration of margin score display to be 2 seconds
 coinsScore.duration(2);
 
+//sets duration of margin score display's fade in/fade out to be 1 second
+coinsScore.fadeDuration(1);
+
 //spawns the marginal scores at a random location within the specified range
 coinsScore.randomPosRange(1);
 
-//defines the string fromatting of the spawned visualization. {score} will be replaced with the marginal score
+//defines the string fromatting of the spawned visualization. [score] will be replaced with the marginal score
 //if marginal score is 2, the visualization spawned is 'You received 2 points!'
-coinsScore.scoreFormat('You received {score} points!');
+coinsScore.scoreFormat('You received [score] points!');
 
 //mutes sound fx
 coinsScore.mute(true);
@@ -76,9 +79,11 @@ All of the parameters are optional. The default values are the following if ther
 
  **Duration**: 1s
 
+**FadeDuration**: 0.5s
+
  **Random Position Range**: 0
 
- **Score Format**: ""
+ **Score Format**: [score]
 
  **Muted**: false
 
@@ -141,6 +146,7 @@ coinsScore.score(10)
 	.color(col(0,0,0,1))
 	.offset(vec3(1,2,3))
 	.duration(3)
+	.fadeDuration(0.7)
 	.randomPosRange(1.5)
 	.scoreFormat('+ {score} pts') 
 	.mute(true)
@@ -152,8 +158,9 @@ log.info(coinsScore.getFontSize());     	//prints 100
 log.info(coinsScore.getColor());			//prints col4(0,0,0,1)
 log.info(coinsScore.getOffset());			//prints vec3(1,2,3)
 log.info(coinsScore.getDuration());      	//prints 3
+log.info(coinsScore.getFadeDuration());		//prints 0.7
 log.info(coinsScore.getRandomPosRange()); 	//prints 1.5 
-log.info(coinsScore.getScoreFormat());   	//prints '+ {score} pts'
+log.info(coinsScore.getScoreFormat());   	//prints '+ [score] pts'
 log.info(coinsScore.isMuted()); 	 		//prints true
 log.info(coinsScore.getDisplayVine); 	 	//prints the vine element
 
