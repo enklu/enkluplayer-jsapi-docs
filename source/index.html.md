@@ -40,6 +40,7 @@ includes:
   - kinect
   - speech-preview
   - assets-preview
+  - score
   - storage-preview
 
 search: true
