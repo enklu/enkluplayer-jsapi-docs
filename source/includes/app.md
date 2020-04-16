@@ -154,13 +154,13 @@ Many aspects of SAI can be adjusted through its schema. Here is a list of all of
 
 **Numbers**
 
-`fontSize`: sets SAI text's font size
+`fontSize`: sets the font size for SAI's text display
 
-`lineSpacing`: sets SAI text's line spacing
+`lineSpacing`: sets the line spacing for SAI's text display 
 
-`text.width`: sets SAI text's width
+`text.width`: sets the width for SAI's text display 
 
-`text.height`: sets SAI text's height
+`text.height`: sets height for SAI's text display 
 
 `text.transitionDuration`: sets the transition duration between SAI text changes
 
@@ -172,25 +172,25 @@ Many aspects of SAI can be adjusted through its schema. Here is a list of all of
 
 `magnetTolerance`: sets the threshold distance that when surpassed, SAI repositions itself in front of the camera
 
-`Strings`
+**Strings**
 
-`font`: sets SAI text's font
+`font`: sets the font for SAI's text display 
 
-`lineSpacing`: sets SAI text's line spacing
+`lineSpacing`: sets the line spacing for SAI's text display 
 
-`text.horizontalOverflow`: sets SAI text's horizontal overflow(*Overflow* or *Wrap*)
+`text.horizontalOverflow`: sets the horizontal overflow(*Overflow* or *Wrap*) for SAI's text display 
 
-`text.verticalOverflow`: sets SAI text's vertical overflow(*Overflow* or *Wrap*)
+`text.verticalOverflow`: sets the vertical overflow(*Overflow* or *Wrap*) for SAI's text display 
 
-`text.alignment`: sets SAI text's alignment
+`text.alignment`: sets the alignment for SAI's text display 
 
 **Colors**
 
-`text.shadow.color`: sets SAI text's shadow color
+`text.shadow.color`: sets the shadow color for SAI's text display 
 
 **Vectors**
 
-`text.shadow.offset`: sets SAI text's shadow offset
+`text.shadow.offset`: sets the shadow offset for SAI's text display 
 
 
 > Adds button option to sai for users to choose from
@@ -246,29 +246,29 @@ Here is a list of the button schema descriptions and a short description.
 
 **Numbers** 
 
-`fontSize`: sets SAI buttons' text font size
+`fontSize`: sets the font size for the text on SAI's buttons
 
-`lineSpacing`: sets SAI buttons' text line spacing
+`lineSpacing`: sets the line spacing for the text on SAI's buttons 
 
-`text.height`: sets SAI buttons' text height
+`text.height`: sets the height for the text on SAI's buttons 
 
-`text.width`: sets SAI buttons' text width
+`text.width`: sets the width for the text on SAI's buttons 
 
 **Strings**
 
-`font`: sets SAI buttons' text font
+`font`: sets the font for the text on SAI's buttons 
 
-`text.horizontalOverflow`: sets SAI buttons' text horizontal overflow (*Overflow* or *Wrap*)
+`text.horizontalOverflow`: sets the horizontal overflow (*Overflow* or *Wrap*) for the text on SAI's buttons 
 
-`text.verticalOverflow`: sets SAI buttons' text vertical overflow (*Overflow or *Wrap*)
+`text.verticalOverflow`: sets the vertical overflow (*Overflow or *Wrap*) for the text on SAI's buttons 
 
 **Color**
 
-`text.shadow.color`: sets SAI buttons' text shadow color
+`text.shadow.color`: sets the shadow color for the text on SAI's buttons 
 
 **Vector**
 
-`text.shadow.offset`: sets SAI buttons' text shadow offset
+`text.shadow.offset`: sets the shadow offset for the text on SAI's buttons 
 
 
 > Changes sai buttons' text size
