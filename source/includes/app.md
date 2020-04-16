@@ -126,12 +126,12 @@ app.sai.schema.setBool('visible', false);
 > Changes font size of SAI text
 
 ```javascript
-app.sai.schema.setNumber('fontSize', 70f);
+app.sai.schema.setNumber('fontSize', 70);
 ```
 > Changes the magnet tolerance of sai when it is unfocused. SAI will readjust its position only when the gaze spot is beyond the specified threshold.  
 
 ```javascript
-app.sai.schema.setNumber('magnetTolerance', 2f);
+app.sai.schema.setNumber('magnetTolerance', 2);
 ```
 
 > Changes text alignment of SAI
@@ -198,9 +198,9 @@ Many aspects of SAI can be adjusted through its schema. Here is a list of all of
 
 ##SAI Buttons(Preview)
 
-The `prompt` command can be used to let SAI prompt button options for the player to choose from. The first argument is a callback, the second is the question, the following are chained questions.
+The `prompt` command can be used to let SAI prompt button options for the player to choose from. The first argument is a callback function, the second is the question, the following are chained questions.
 
-`prompt(Callback callback, String Question, String option1, String option2, ...)`
+`prompt(Function callback, String Question, String option1, String option2, ...)`
 
 The callback has a payload that indicates which button has been selected.
 
